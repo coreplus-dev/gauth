@@ -181,7 +181,16 @@
                 var accName = $('<p>').text(account.name).html();  // print as-is
                 var detLink = $('<span class="secret"><h3>' + key + '</h3>' + accName + '</span>');
                 var accElem = $('<li data-icon="false">').append(detLink);
- 
+
+                // --追加 ここから-- クリップボードにコピーする
+                var clipKeyLink = $('<p><a class="clip-key" href="#">clip</a></p>');
+                clipKeyLink.click(function () {
+                    navigator.clipboard.writeText(key)
+                    // clipKeyLink.append('<p>clipd!</p>')
+                });
+                accElem.append(clipKeyLink)
+                // --追加 ここまで--
+
                 if(editingEnabled) {
                     var delLink = $('<p class="ui-li-aside"><a class="ui-btn-icon-notext ui-icon-delete" href="#"></a></p>');
                     delLink.click(function () {
